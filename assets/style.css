@@ -338,83 +338,127 @@ body {
 
 .section strong { color: var(--text-primary); font-weight: 600; }
 
-/* ========== STEP CARDS ========== */
-.step-card {
+/* ========== STEP LIST (text) ========== */
+.step-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 0 24px;
   background: var(--surface-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  margin-bottom: 16px;
-  transition: var(--transition);
+  overflow: hidden;
 }
 
-.step-card:hover {
-  border-color: var(--brand-sky);
-  box-shadow: var(--shadow-sm);
-}
-
-.step-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--brand-light);
-  color: var(--brand-blue);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.step-card p {
+.step-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 18px;
   font-size: 15px;
   line-height: 1.8;
   color: var(--text-secondary);
-  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
 }
 
-.step-card p:last-child { margin-bottom: 0; }
+.step-list li:last-child { border-bottom: none; }
 
-/* ========== SCREENSHOT PLACEHOLDER ========== */
-.screenshot {
-  position: relative;
-  background: var(--brand-pale);
-  border: 2px dashed var(--border-medium);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  margin: 14px 0;
-  display: flex;
+.step-list li:hover { background: var(--brand-pale); }
+
+.step-num-badge {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--brand-blue);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 3px;
 }
 
-.screenshot img {
+/* ========== IMAGE GALLERY (below text) ========== */
+.step-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0 0 16px;
+}
+
+.step-gallery-item {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  background: var(--surface-gray);
+}
+
+.step-gallery-item img {
   width: 100%;
-  max-width: 320px;
   height: auto;
   display: block;
-  margin: 0 auto;
+}
+
+/* 下载App四图一行布局 */
+.step-gallery.quad {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 479px) {
+  .step-gallery.quad { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* 注册账户双图并排布局 */
+.step-gallery.twin {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 0 0 16px;
+}
+
+.step-gallery.twin .step-gallery-item {
+  flex: 0 1 280px;
+  max-width: 280px;
+}
+
+@media (max-width: 479px) {
+  .step-gallery.twin .step-gallery-item {
+    flex: 0 1 160px;
+    max-width: 160px;
+  }
+}
+.step-gallery.landscape {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.step-gallery.landscape .step-gallery-item img {
   border-radius: var(--radius-sm);
 }
 
-.screenshot.has-image {
-  background: var(--surface-gray);
+/* 单张横图（如开户奖励） */
+.single-image {
+  border-radius: var(--radius-md);
+  overflow: hidden;
   border: 1px solid var(--border-light);
+  margin: 16px 0;
 }
 
-.screenshot-label {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: rgba(10,37,64,0.7);
-  color: white;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  backdrop-filter: blur(4px);
+.single-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 479px) {
+  .step-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .step-gallery { grid-template-columns: repeat(3, 1fr); }
 }
 
 /* ========== ALERT / TIP BOXES ========== */
@@ -549,6 +593,10 @@ body {
   line-height: 1.8;
   color: var(--text-secondary);
   display: none;
+}
+
+.faq-a p strong {
+  color: var(--brand-blue);
 }
 
 .faq-item.open .faq-a { display: block; }
@@ -772,4 +820,76 @@ body {
   .hero h1 { font-size: 38px; }
   .section-header h2 { font-size: 26px; }
   .step-card { padding: 24px; }
+}
+
+/* ========== SCROLL PROGRESS BAR ========== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--brand-blue);
+  width: 0%;
+  z-index: 200;
+  transition: width 0.1s linear;
+}
+
+/* ========== LIGHTBOX ========== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox-img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 301;
+}
+
+.step-gallery-item,
+.single-image { cursor: zoom-in; }
+
+/* ========== BACK TO TOP ========== */
+.back-to-top {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brand-blue);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
