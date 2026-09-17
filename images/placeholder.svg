@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="640" viewBox="0 0 360 640">
+  <rect width="360" height="640" rx="16" fill="#E8F0FE"/>
+  <rect x="120" y="260" width="120" height="120" rx="12" fill="#B8D4F0" opacity="0.6"/>
+  <path d="M160 300 L180 280 L200 300 L190 300 L190 340 L170 340 L170 300 Z" fill="#5B8DB8" opacity="0.5"/>
+  <rect x="140" y="310" width="80" height="8" rx="4" fill="#5B8DB8" opacity="0.4"/>
+  <text x="180" y="420" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" fill="#5B8DB8" font-weight="600">截图待补</text>
+  <text x="180" y="445" text-anchor="middle" font-family="system-ui, monospace" font-size="12" fill="#8AAFD0" id="filename"></text>
+</svg>
